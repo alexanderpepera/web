@@ -3,76 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Profit Calculator</title>
+    <title>PSU REALITY CHECKER // 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
-        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
-        h2 { color: #2d3436; margin-top: 0; }
-        .input-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #636e72; }
-        input { width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        .results { margin-top: 20px; padding-top: 20px; border-top: 2px solid #f1f2f6; }
-        .stat { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .stat-val { font-weight: bold; color: #00b894; }
-        .highlight { background: #e1f5fe; padding: 15px; border-radius: 8px; text-align: center; margin-top: 10px; }
+        body { font-family: 'JetBrains Mono', monospace; background-color: #050505; color: #00f3ff; }
+        .cyber-card { background: rgba(0, 20, 20, 0.9); border: 2px solid #00f3ff; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2); }
+        .neon-text { text-shadow: 0 0 10px rgba(0, 243, 255, 0.7); }
+        .scanline { width: 100%; height: 2px; background: rgba(0, 243, 255, 0.1); position: absolute; animation: scan 4s linear infinite; }
+        @keyframes scan { from { top: 0; } to { top: 100%; } }
+        select { background: #000 !important; color: #fff !important; border: 1px solid #004444 !important; }
+        .clip-btn { clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); transition: 0.3s; }
+        .clip-btn:hover { background: #fff; color: #000; box-shadow: 0 0 30px #fff; }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex items-center justify-center p-4 overflow-hidden">
+    <div class="scanline"></div>
 
-<div class="card">
-    <h2>Profit Logic</h2>
-    
-    <div class="input-group">
-        <label>Selling Price ($)</label>
-        <input type="number" id="price" value="50" oninput="calculate()">
-    </div>
-    
-    <div class="input-group">
-        <label>Cost per Unit ($)</label>
-        <input type="number" id="cost" value="10" oninput="calculate()">
-    </div>
-    
-    <div class="input-group">
-        <label>Monthly Fixed Costs ($)</label>
-        <input type="number" id="fixed" value="2000" oninput="calculate()">
-    </div>
-
-    <div class="results">
-        <div class="stat">
-            <span>Margin per Unit:</span>
-            <span class="stat-val" id="margin">$0.00</span>
-        </div>
-        <div class="stat">
-            <span>Profit Margin %:</span>
-            <span class="stat-val" id="percent">0%</span>
-        </div>
+    <div class="cyber-card w-full max-w-lg p-8 z-10 relative">
+        <div class="absolute top-0 right-0 p-2 text-[8px] opacity-50">SYS_VER: 2.0.26_HW</div>
         
-        <div class="highlight">
-            <label>Units needed to Break Even</label>
-            <h1 id="breakeven">0</h1>
-            <small>units per month</small>
+        <h1 class="text-3xl font-black mb-1 uppercase tracking-tighter neon-text italic">PSU REALITY CHECKER</h1>
+        <p class="text-[10px] mb-8 text-cyan-700 tracking-[0.3em]">HARDWARE POWER DIAGNOSTIC // 2026 UPDATED</p>
+
+        <div class="space-y-6">
+            <div>
+                <label class="text-[10px] uppercase text-cyan-600 block mb-1">Discrete GPU Module</label>
+                <select id="gpuSelect" class="w-full p-3 outline-none focus:border-cyan-400 transition-all cursor-pointer">
+                    </select>
+            </div>
+
+            <div>
+                <label class="text-[10px] uppercase text-cyan-600 block mb-1">Central Processing Core</label>
+                <select id="cpuSelect" class="w-full p-3 outline-none focus:border-cyan-400 transition-all cursor-pointer">
+                    </select>
+            </div>
+
+            <div class="flex items-center justify-between gap-4 py-4">
+                <div class="flex-1 border-t border-cyan-900"></div>
+                <div class="text-[10px] text-cyan-900">+100W SYSTEM OVERHEAD</div>
+                <div class="flex-1 border-t border-cyan-900"></div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 border border-cyan-900 bg-black">
+                    <span class="text-[9px] uppercase block mb-1 text-cyan-700">Actual Draw</span>
+                    <span id="actualWatts" class="text-2xl font-bold text-white tracking-tighter">0W</span>
+                </div>
+                <div class="p-4 border-2 border-cyan-400 bg-cyan-400/10">
+                    <span class="text-[9px] uppercase block mb-1 text-cyan-400 font-bold underline">Recommended PSU</span>
+                    <span id="recWatts" class="text-2xl font-bold text-white tracking-tighter">0W</span>
+                </div>
+            </div>
+
+            <a id="amazonBtn" href="#" target="_blank" class="clip-btn block w-full bg-cyan-500 text-black font-black py-4 text-center uppercase tracking-widest mt-4">
+                Find {W} Unit on Amazon →
+            </a>
         </div>
+
+        <p class="text-center text-[9px] mt-6 text-cyan-900 uppercase">Warning: Use 80+ Gold or better for high-end Blackwell/Zen5 builds</p>
     </div>
-</div>
 
-<script>
-    function calculate() {
-        const price = parseFloat(document.getElementById('price').value) || 0;
-        const cost = parseFloat(document.getElementById('cost').value) || 0;
-        const fixed = parseFloat(document.getElementById('fixed').value) || 0;
+    <script>
+        const GPUs = [
+            { name: "NVIDIA RTX 5090 (Blackwell)", tdp: 575 },
+            { name: "NVIDIA RTX 5080", tdp: 360 },
+            { name: "NVIDIA RTX 5070 Ti", tdp: 300 },
+            { name: "NVIDIA RTX 5070", tdp: 250 },
+            { name: "NVIDIA RTX 4090", tdp: 450 },
+            { name: "NVIDIA RTX 4080 Super", tdp: 320 },
+            { name: "AMD Radeon RX 9070 XT", tdp: 260 },
+            { name: "AMD Radeon RX 9070", tdp: 220 },
+            { name: "AMD Radeon RX 7900 XTX", tdp: 355 },
+            { name: "AMD Radeon RX 7800 XT", tdp: 263 },
+            { name: "Intel Arc B580 (Battlemage)", tdp: 190 }
+        ];
 
-        const margin = price - cost;
-        const marginPercent = price > 0 ? (margin / price) * 100 : 0;
-        const breakEvenUnits = margin > 0 ? Math.ceil(fixed / margin) : 0;
+        const CPUs = [
+            { name: "Intel Core Ultra 9 285K", tdp: 250 },
+            { name: "Intel Core i9-14900K", tdp: 253 },
+            { name: "AMD Ryzen 9 9950X3D", tdp: 170 },
+            { name: "AMD Ryzen 9 9950X", tdp: 170 },
+            { name: "AMD Ryzen 7 9850X3D", tdp: 120 },
+            { name: "AMD Ryzen 7 9800X3D", tdp: 120 },
+            { name: "AMD Ryzen 5 9600X", tdp: 65 }
+        ];
 
-        document.getElementById('margin').innerText = `$${margin.toFixed(2)}`;
-        document.getElementById('percent').innerText = `${marginPercent.toFixed(1)}%`;
-        document.getElementById('breakeven').innerText = margin > 0 ? breakEvenUnits : "∞";
-    }
+        const gpuSelect = document.getElementById('gpuSelect');
+        const cpuSelect = document.getElementById('cpuSelect');
+        const actualWatts = document.getElementById('actualWatts');
+        const recWatts = document.getElementById('recWatts');
+        const amazonBtn = document.getElementById('amazonBtn');
 
-    // Initialize on load
-    calculate();
-</script>
+        // Populate dropdowns
+        GPUs.forEach(g => gpuSelect.add(new Option(g.name, g.tdp)));
+        CPUs.forEach(c => cpuSelect.add(new Option(c.name, c.tdp)));
 
+        function calculate() {
+            const gTdp = parseInt(gpuSelect.value);
+            const cTdp = parseInt(cpuSelect.value);
+            const systemOverhead = 100; // Fans, Mobo, RGB
+            
+            const total = gTdp + cTdp + systemOverhead;
+            const recommended = Math.ceil((total * 1.5) / 50) * 50; // 50% Safety Overhead
+
+            actualWatts.innerText = `${total}W`;
+            recWatts.innerText = `${recommended}W`;
+            
+            amazonBtn.innerText = `Deploy ${recommended}W Unit →`;
+            // REPLACE 'YOURTAG-20' with your actual Amazon Affiliate ID
+            amazonBtn.href = `https://www.amazon.com/s?k=${recommended}+watt+power+supply+80+plus+gold&tag=YOURTAG-20`;
+        }
+
+        gpuSelect.addEventListener('change', calculate);
+        cpuSelect.addEventListener('change', calculate);
+
+        // Initial Calc
+        calculate();
+    </script>
 </body>
 </html>
