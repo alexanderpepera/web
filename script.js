@@ -1,5 +1,6 @@
+
         const GPUs = [
-            // NVIDIA 50-Series (Newest)
+           // NVIDIA 50-Series (Newest)
             { name: "NVIDIA RTX 5090 (Blackwell)", tdp: 575 },
             { name: "NVIDIA RTX 5080", tdp: 360 },
             { name: "NVIDIA RTX 5070 Ti", tdp: 300 },
@@ -32,7 +33,6 @@
         ];
 
         const CPUs = [
-            // Intel Core Ultra & 14th Gen
             { name: "Intel Core Ultra 9 285K", tdp: 250 },
             { name: "Intel Core Ultra 7 265K", tdp: 250 },
             { name: "Intel Core Ultra 5 245K", tdp: 159 },
@@ -55,3 +55,35 @@
             { name: "AMD Ryzen 7 5800X3D", tdp: 105 },
             { name: "AMD Ryzen 5 5600X", tdp: 65 }
         ];
+
+        const gpuSelect = document.getElementById('gpuSelect');
+        const cpuSelect = document.getElementById('cpuSelect');
+        const actualWatts = document.getElementById('actualWatts');
+        const recWatts = document.getElementById('recWatts');
+        const amazonBtn = document.getElementById('amazonBtn');
+
+        // Populate dropdowns
+        GPUs.forEach(g => gpuSelect.add(new Option(g.name, g.tdp)));
+        CPUs.forEach(c => cpuSelect.add(new Option(c.name, c.tdp)));
+
+        function calculate() {
+            const gTdp = parseInt(gpuSelect.value);
+            const cTdp = parseInt(cpuSelect.value);
+            const systemOverhead = 100; // Fans, Mobo, RGB
+            
+            const total = gTdp + cTdp + systemOverhead;
+            const recommended = Math.ceil((total * 1.5) / 50) * 50; // 50% Safety Overhead
+
+            actualWatts.innerText = `${total}W`;
+            recWatts.innerText = `${recommended}W`;
+            
+            amazonBtn.innerText = `Deploy ${recommended}W Unit →`;
+            // REPLACE 'YOURTAG-20' with your actual Amazon Affiliate ID
+            amazonBtn.href = `https://www.amazon.com/s?k=${recommended}+watt+power+supply+80+plus+gold&tag=YOURTAG-20`;
+        }
+
+        gpuSelect.addEventListener('change', calculate);
+        cpuSelect.addEventListener('change', calculate);
+
+        // Initial Calc
+        calculate();
