@@ -138,3 +138,44 @@ const GPUs = [
     { name: "Intel Arc A580", tdp: 175 },
     { name: "Intel Arc A380", tdp: 75 }
 ];
+
+const CPUs = [
+    { name: "Intel Core Ultra 9 285K", tdp: 250 },
+    { name: "Intel Core i9-14900K", tdp: 253 },
+    { name: "AMD Ryzen 9 9950X3D", tdp: 170 },
+    { name: "AMD Ryzen 9 9950X", tdp: 170 },
+    { name: "AMD Ryzen 7 9850X3D", tdp: 120 },
+    { name: "AMD Ryzen 7 9800X3D", tdp: 120 },
+    { name: "AMD Ryzen 5 9600X", tdp: 65 }
+];
+
+const gpuSelect = document.getElementById('gpuSelect');
+const cpuSelect = document.getElementById('cpuSelect');
+const actualWatts = document.getElementById('actualWatts');
+const recWatts = document.getElementById('recWatts');
+const amazonBtn = document.getElementById('amazonBtn');
+
+// Populate dropdowns
+GPUs.forEach(g => gpuSelect.add(new Option(g.name, g.tdp)));
+CPUs.forEach(c => cpuSelect.add(new Option(c.name, c.tdp)));
+
+function calculate() {
+    const gTdp = parseInt(gpuSelect.value);
+    const cTdp = parseInt(cpuSelect.value);
+    const systemOverhead = 100; // Fans, Mobo, RGB
+    
+    const total = gTdp + cTdp + systemOverhead;
+    const recommended = Math.ceil((total * 1.5) / 50) * 50; 
+
+    actualWatts.innerText = `${total}W`;
+    recWatts.innerText = `${recommended}W`;
+    
+    amazonBtn.innerText = `Deploy ${recommended}W Unit →`;
+    amazonBtn.href = `https://amazon.com{recommended}+watt+power+supply+80+plus+gold&tag=YOURTAG-20`;
+}
+
+gpuSelect.addEventListener('change', calculate);
+cpuSelect.addEventListener('change', calculate);
+
+// Run on load
+calculate();
