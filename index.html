@@ -3,10 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Simple Profit Calculator</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { color: #2d3436; margin-top: 0; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #636e72; }
+        input { width: 100%; padding: 10px; border: 1px solid #dfe6e9; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        .results { margin-top: 20px; padding-top: 20px; border-top: 2px solid #f1f2f6; }
+        .stat { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .stat-val { font-weight: bold; color: #00b894; }
+        .highlight { background: #e1f5fe; padding: 15px; border-radius: 8px; text-align: center; margin-top: 10px; }
+    </style>
 </head>
-<h1>The is my website</h1>
 <body>
+
+<div class="card">
+    <h2>Profit Logic</h2>
     
+    <div class="input-group">
+        <label>Selling Price ($)</label>
+        <input type="number" id="price" value="50" oninput="calculate()">
+    </div>
+    
+    <div class="input-group">
+        <label>Cost per Unit ($)</label>
+        <input type="number" id="cost" value="10" oninput="calculate()">
+    </div>
+    
+    <div class="input-group">
+        <label>Monthly Fixed Costs ($)</label>
+        <input type="number" id="fixed" value="2000" oninput="calculate()">
+    </div>
+
+    <div class="results">
+        <div class="stat">
+            <span>Margin per Unit:</span>
+            <span class="stat-val" id="margin">$0.00</span>
+        </div>
+        <div class="stat">
+            <span>Profit Margin %:</span>
+            <span class="stat-val" id="percent">0%</span>
+        </div>
+        
+        <div class="highlight">
+            <label>Units needed to Break Even</label>
+            <h1 id="breakeven">0</h1>
+            <small>units per month</small>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculate() {
+        const price = parseFloat(document.getElementById('price').value) || 0;
+        const cost = parseFloat(document.getElementById('cost').value) || 0;
+        const fixed = parseFloat(document.getElementById('fixed').value) || 0;
+
+        const margin = price - cost;
+        const marginPercent = price > 0 ? (margin / price) * 100 : 0;
+        const breakEvenUnits = margin > 0 ? Math.ceil(fixed / margin) : 0;
+
+        document.getElementById('margin').innerText = `$${margin.toFixed(2)}`;
+        document.getElementById('percent').innerText = `${marginPercent.toFixed(1)}%`;
+        document.getElementById('breakeven').innerText = margin > 0 ? breakEvenUnits : "∞";
+    }
+
+    // Initialize on load
+    calculate();
+</script>
+
 </body>
 </html>
