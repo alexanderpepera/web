@@ -281,7 +281,8 @@ document.addEventListener("DOMContentLoaded", function() {
         amazonBtn.innerText = `Deploy ${recommendedTotal}W Unit →`;
         
         // FIXED: Added $ and search path /s?k=
-        amazonBtn.href = `https://amazon.com/s?k={recommendedTotal}+watt+power+supply+80+plus+gold&tag=YOURTAG-20`;
+       amazonBtn.href = "https://www.amazon.com/s?k=" + recommendedTotal + "+watt+power+supply+80+plus+gold&tag=YOURTAG-20";
+
     }
 
     gpuSelect.addEventListener('change', calculate);
