@@ -290,3 +290,26 @@ document.addEventListener("DOMContentLoaded", function() {
     
     init();
 });
+
+
+// INDEPENDENT SEARCH LOGIC
+function enableSearch(inputId, selectId) {
+    const input = document.getElementById(inputId);
+    const select = document.getElementById(selectId);
+
+    input.addEventListener('input', () => {
+        const filter = input.value.toLowerCase();
+        const options = select.options;
+
+        for (let i = 0; i < options.length; i++) {
+            const text = options[i].text.toLowerCase();
+            // This hides/shows the actual option lines
+            options[i].style.display = text.includes(filter) ? "" : "none";
+        }
+    });
+}
+
+// RUN FOR BOTH
+enableSearch('gpuSearch', 'gpuSelect');
+enableSearch('cpuSearch', 'cpuSelect');
+    calculate();
