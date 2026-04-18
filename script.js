@@ -270,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const totalDraw = gpuPower + cpuPower + 100;
         
         // 1.5x Safety overhead
-        let recommendedTotal = Math.ceil((totalDraw * 1.25) / 50) * 50;
+        let recommendedTotal = Math.ceil((totalDraw * 1.325) / 50) * 50;
 
         // Standard safety floor
         if (recommendedTotal < 450) recommendedTotal = 450;
