@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name='admaven-placement' content=Bqjs7rjaH>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSU REALITY CHECKER // 2026</title>
@@ -17,7 +16,6 @@
         .clip-btn { clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); transition: 0.3s; }
         .clip-btn:hover { background: #fff; color: #000; box-shadow: 0 0 30px #fff; }
     </style>
-    <script data-cfasync="false" src="//dcbbwymp1bhlf.cloudfront.net/?wbbcd=1253748"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 overflow-hidden">
     <div class="scanline"></div>
@@ -29,17 +27,26 @@
         <p class="text-[10px] mb-8 text-cyan-700 tracking-[0.3em]">HARDWARE POWER DIAGNOSTIC // 2026 UPDATED</p>
 
         <div class="space-y-6">
-            <div>
-                <label class="text-[10px] uppercase text-cyan-600 block mb-1">Discrete GPU Module</label>
-                <select id="gpuSelect" class="w-full p-3 outline-none focus:border-cyan-400 transition-all cursor-pointer">
-                    </select>
-            </div>
+            <!-- GPU SECTION -->
+<div class="mb-4">
+    <label class="text-[10px] uppercase text-cyan-600 block mb-1">Discrete GPU Module</label>
+    <div class="flex flex-col border border-cyan-900 bg-black">
+        <input type="text" id="gpuSearch" placeholder="SEARCH GPU..." 
+               class="p-2 text-[10px] bg-transparent border-b border-cyan-900 text-white outline-none focus:bg-cyan-900/20">
+        <select id="gpuSelect" class="w-full p-3 bg-transparent outline-none cursor-pointer text-white"></select>
+    </div>
+</div>
 
-            <div>
-                <label class="text-[10px] uppercase text-cyan-600 block mb-1">Central Processing Core</label>
-                <select id="cpuSelect" class="w-full p-3 outline-none focus:border-cyan-400 transition-all cursor-pointer">
-                    </select>
-            </div>
+<!-- CPU SECTION -->
+<div class="mb-4">
+    <label class="text-[10px] uppercase text-cyan-600 block mb-1">Central Processing Core</label>
+    <div class="flex flex-col border border-cyan-900 bg-black">
+        <input type="text" id="cpuSearch" placeholder="SEARCH CPU..." 
+               class="p-2 text-[10px] bg-transparent border-b border-cyan-900 text-white outline-none focus:bg-cyan-900/20">
+        <select id="cpuSelect" class="w-full p-3 bg-transparent outline-none cursor-pointer text-white"></select>
+    </div>
+</div>
+
 
             <div class="flex items-center justify-between gap-4 py-4">
                 <div class="flex-1 border-t border-cyan-900"></div>
