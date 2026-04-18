@@ -69,17 +69,25 @@ const GPUs = [
     // --- AMD RADEON (MODERN) ---
     { name: "AMD Radeon RX 7900 XTX", tdp: 355 },
     { name: "AMD Radeon RX 9070 XT", tdp: 260 },
+     { name: "AMD Radeon RX 7900 XT", tdp: 315 },
     { name: "AMD Radeon RX 9070", tdp: 220 },
     { name: "AMD Radeon RX 7900 XT", tdp: 315 },
     { name: "AMD Radeon RX 7900 GRE", tdp: 260 },
     { name: "AMD Radeon RX 6950 XT", tdp: 335 },
     { name: "AMD Radeon RX 6900 XT", tdp: 300 },
     { name: "AMD Radeon RX 6800 XT", tdp: 300 },
+     { name: "AMD Radeon RX 6750 XT", tdp: 250 },
     { name: "AMD Radeon RX 7800 XT", tdp: 263 },
     { name: "AMD Radeon RX 7700 XT", tdp: 245 },
+     { name: "AMD Radeon RX 6800", tdp: 250 },
     { name: "AMD Radeon RX 6800", tdp: 250 },
+     { name: "AMD Radeon RX 6700 XT", tdp: 230 },
     { name: "AMD Radeon RX 7600 XT", tdp: 190 },
     { name: "AMD Radeon RX 7600", tdp: 165 },
+    { name: "AMD Radeon RX 6650 XT", tdp: 180 },
+    { name: "AMD Radeon RX 6600 XT", tdp: 160 },
+    { name: "AMD Radeon RX 6600", tdp: 132 },
+    { name: "AMD Radeon RX 6500 XT", tdp: 107 },
 
     // --- AMD RADEON LEGACY ---
     { name: "AMD Radeon VII", tdp: 300 },
@@ -141,6 +149,7 @@ const CPUs = [
     { name: "AMD Ryzen 5 2600X", tdp: 95 },
     { name: "AMD Ryzen 7 1800X", tdp: 95 },
 
+
     // --- INTEL 14th GEN (RAPTOR LAKE REFRESH) ---
     { name: "Intel Core i9-14900KS", tdp: 253 },
     { name: "Intel Core i9-14900K", tdp: 253 },
@@ -152,6 +161,8 @@ const CPUs = [
     { name: "Intel Core i5-14600K", tdp: 181 },
     { name: "Intel Core i5-14600KF", tdp: 181 },
     { name: "Intel Core i5-14400F", tdp: 148 },
+      { name: "Intel Core i3-14100", tdp: 110 },
+    { name: "Intel Core i3-14100F", tdp: 110 },
 
     // --- INTEL 13th GEN (RAPTOR LAKE) ---
     { name: "Intel Core i9-13900KS", tdp: 253 },
@@ -162,6 +173,8 @@ const CPUs = [
     { name: "Intel Core i5-13600K", tdp: 181 },
     { name: "Intel Core i5-13600KF", tdp: 181 },
     { name: "Intel Core i5-13400F", tdp: 148 },
+        { name: "Intel Core i3-13100", tdp: 89 },
+    { name: "Intel Core i3-13100F", tdp: 89 },
 
     // --- INTEL 12th GEN (ALDER LAKE) ---
     { name: "Intel Core i9-12900KS", tdp: 241 },
@@ -189,6 +202,7 @@ const CPUs = [
     { name: "Intel Core i9-9900K", tdp: 210 },
     { name: "Intel Core i7-9700K", tdp: 190 },
     { name: "Intel Core i5-9600K", tdp: 150 },
+    { name: "Intel Core i3-9100F", tdp: 65 },
     { name: "Intel Core i7-8700K", tdp: 145 },
     { name: "Intel Core i7-8700", tdp: 120 },
     { name: "Intel Core i5-8600K", tdp: 130 },
@@ -216,17 +230,12 @@ const CPUs = [
     { name: "Intel Core i5-2500K", tdp: 115 }
 ];
 
-// UI ELEMENTS
 const gpuSelect = document.getElementById('gpuSelect');
 const cpuSelect = document.getElementById('cpuSelect');
 const actualWatts = document.getElementById('actualWatts');
 const recWatts = document.getElementById('recWatts');
 const amazonBtn = document.getElementById('amazonBtn');
 
-/**
- * INITIALIZATION:
- * Populate the GPU and CPU dropdown menus from the database.
- */
 function init() {
     // Fill GPU Dropdown
     GPUs.forEach(item => {
@@ -247,40 +256,28 @@ function init() {
     calculate();
 }
 
-/**
- * CORE LOGIC:
- * Calculates real-world draw and adds a 50% safety buffer.
- */
 function calculate() {
-    const gpuPower = parseInt(gpuSelect.value);
-    const cpuPower = parseInt(cpuSelect.value);
-    
-    // System Overhead includes:
-    // Motherboard (~50W-80W)
-    // RAM (5W per stick)
-    // Fans/AIO/RGB (20W-40W)
+    const gpuPower = parseInt(gpuSelect.value) || 0;
+    const cpuPower = parseInt(cpuSelect.value) || 0;
     const fixedOverhead = 100; 
 
-    // Peak Load Calculation
     const totalDraw = gpuPower + cpuPower + fixedOverhead;
-    
-    // Reality Checker Recommended PSU:
-    // We multiply by 1.5 because modern PSUs hit max efficiency at 50% load.
-    // This also prevents "transient spikes" from crashing the PC.
     let recommendedTotal = Math.ceil((totalDraw * 1.5) / 50) * 50;
 
-    // Update UI numbers
     actualWatts.innerText = `${totalDraw}W`;
     recWatts.innerText = `${recommendedTotal}W`;
 
-    // Update Amazon CTA
     amazonBtn.innerText = `Deploy ${recommendedTotal}W Unit →`;
     amazonBtn.href = `https://amazon.com{recommendedTotal}+watt+power+supply+80+plus+gold&tag=YOURTAG-20`;
 }
 
-// ATTACH EVENT LISTENERS
 gpuSelect.addEventListener('change', calculate);
 cpuSelect.addEventListener('change', calculate);
 
-// START ENGINE
+// Start the engine
 init();
+
+
+
+
+
