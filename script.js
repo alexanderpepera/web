@@ -184,6 +184,8 @@ const CPUs = [
     { name: "Intel Core i7-12700KF", tdp: 190 },
     { name: "Intel Core i5-12600K", tdp: 150 },
     { name: "Intel Core i5-12400F", tdp: 117 },
+    { name: "Intel Core i3-12100F", tdp: 89 },
+    { name: "Intel Core i3-12100", tdp: 89 },
 
     // --- INTEL 10th & 11th GEN (COMET/ROCKET LAKE) ---
     { name: "Intel Core i9-11900K", tdp: 251 },
@@ -196,6 +198,7 @@ const CPUs = [
     { name: "Intel Core i7-10700K", tdp: 229 },
     { name: "Intel Core i5-10600K", tdp: 182 },
     { name: "Intel Core i5-10400F", tdp: 134 },
+    { name: "Intel Core i3-10100F", tdp: 65 },
 
     // --- INTEL 8th & 9th GEN (COFFEE LAKE) ---
     { name: "Intel Core i9-9900KS", tdp: 250 },
