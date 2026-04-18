@@ -179,3 +179,129 @@ cpuSelect.addEventListener('change', calculate);
 
 // Run on load
 calculate();
+
+const CPUs = [
+    // --- AMD RYZEN 9000 SERIES (Zen 5) ---
+    { name: "AMD Ryzen 9 9950X/3D", tdp: 230 },
+    { name: "AMD Ryzen 9 9900X/3D", tdp: 162 },
+    { name: "AMD Ryzen 7 9800X3D", tdp: 162 },
+    { name: "AMD Ryzen 7 9700X", tdp: 88 },
+    { name: "AMD Ryzen 5 9600X/9600", tdp: 88 },
+
+    // --- AMD RYZEN 8000 SERIES (APU) ---
+    { name: "AMD Ryzen 7 8700G/8700F", tdp: 88 },
+    { name: "AMD Ryzen 5 8600G/8500G/8400F", tdp: 88 },
+    { name: "AMD Ryzen 3 8300G", tdp: 65 },
+
+    // --- AMD RYZEN 7000 SERIES (Zen 4) ---
+    { name: "AMD Ryzen 9 7950X3D/7950X", tdp: 230 },
+    { name: "AMD Ryzen 9 7900X3D/7900X", tdp: 230 },
+    { name: "AMD Ryzen 9 7900", tdp: 88 },
+    { name: "AMD Ryzen 7 7800X3D", tdp: 162 },
+    { name: "AMD Ryzen 7 7700X", tdp: 142 },
+    { name: "AMD Ryzen 7 7700", tdp: 88 },
+    { name: "AMD Ryzen 5 7600X", tdp: 142 },
+    { name: "AMD Ryzen 5 7600/7500F", tdp: 88 },
+
+    // --- AMD RYZEN 5000 SERIES (Zen 3) ---
+    { name: "AMD Ryzen 9 5950X/5900XT/5900X", tdp: 142 },
+    { name: "AMD Ryzen 9 5900", tdp: 88 },
+    { name: "AMD Ryzen 7 5800X3D/5800XT/5800X", tdp: 142 },
+    { name: "AMD Ryzen 7 5700X3D/5700X/5700", tdp: 88 },
+    { name: "AMD Ryzen 7 5700G", tdp: 88 },
+    { name: "AMD Ryzen 5 5600X3D/5600X", tdp: 88 },
+    { name: "AMD Ryzen 5 5600/T/GT/G", tdp: 88 },
+    { name: "AMD Ryzen 5 5500X3D/5500GT/5500", tdp: 88 },
+    { name: "AMD Ryzen 3 5300G/5100", tdp: 65 },
+
+    // --- AMD RYZEN 1000/2000/3000 ---
+    { name: "AMD Ryzen 9 3950X/3900XT/3900X", tdp: 142 },
+    { name: "AMD Ryzen 7 3800XT/3800X", tdp: 142 },
+    { name: "AMD Ryzen 7 3700X", tdp: 88 },
+    { name: "AMD Ryzen 7 2700X", tdp: 142 },
+    { name: "AMD Ryzen 5 3600XT/3600X/3600", tdp: 95 },
+    { name: "AMD Ryzen 5 2600X", tdp: 95 },
+    { name: "AMD Ryzen 7 1800X/1700X", tdp: 95 },
+    { name: "AMD Ryzen 3 3300X/3100/3200G", tdp: 65 },
+
+    // --- INTEL 14th GEN (Raptor Lake Refresh) ---
+    { name: "Intel Core i9-14900K/KF", tdp: 253 },
+    { name: "Intel Core i9-14900T", tdp: 106 },
+    { name: "Intel Core i7-14700K/KF", tdp: 253 },
+    { name: "Intel Core i7-14700/F", tdp: 219 },
+    { name: "Intel Core i7-14700T", tdp: 106 },
+    { name: "Intel Core i5-14600K/KF", tdp: 181 },
+    { name: "Intel Core i5-14500/14400/F", tdp: 154 },
+    { name: "Intel Core i3-14100/F", tdp: 110 },
+
+    // --- INTEL 13th GEN (Raptor Lake) ---
+    { name: "Intel Core i9-13900KS/K/KF", tdp: 253 },
+    { name: "Intel Core i9-13900/F", tdp: 219 },
+    { name: "Intel Core i9-13900T", tdp: 106 },
+    { name: "Intel Core i7-13700K/KF", tdp: 253 },
+    { name: "Intel Core i7-13700/F", tdp: 219 },
+    { name: "Intel Core i5-13600K/KF", tdp: 181 },
+    { name: "Intel Core i5-13500/13400/F", tdp: 154 },
+    { name: "Intel Core i3-13100/F", tdp: 89 },
+
+    // --- INTEL 12th GEN (Alder Lake) ---
+    { name: "Intel Core i9-12900KS/K/KF", tdp: 241 },
+    { name: "Intel Core i9-12900/F", tdp: 202 },
+    { name: "Intel Core i7-12700K/KF", tdp: 190 },
+    { name: "Intel Core i7-12700/F", tdp: 180 },
+    { name: "Intel Core i5-12600K/KF", tdp: 150 },
+    { name: "Intel Core i5-12500/12400/F", tdp: 117 },
+    { name: "Intel Core i3-12300/12100/F", tdp: 89 },
+
+    // --- INTEL 10th & 11th GEN ---
+    { name: "Intel Core i9-11900K/KF", tdp: 251 },
+    { name: "Intel Core i9-11900/F", tdp: 224 },
+    { name: "Intel Core i7-11700K/KF", tdp: 251 },
+    { name: "Intel Core i5-11600K/KF", tdp: 190 },
+    { name: "Intel Core i5-11400/F", tdp: 154 },
+    { name: "Intel Core i9-10900K/KF", tdp: 250 },
+    { name: "Intel Core i7-10700K/KF", tdp: 229 },
+    { name: "Intel Core i5-10600K/KF", tdp: 182 },
+    { name: "Intel Core i5-10400/F", tdp: 134 },
+    { name: "Intel Core i3-10100/F", tdp: 90 }
+
+        // --- INTEL 9th GEN (Coffee Lake Refresh) ---
+    { name: "Intel Core i9-9900K/KF", tdp: 210 },
+    { name: "Intel Core i7-9700K/KF", tdp: 190 },
+    { name: "Intel Core i5-9600K/KF", tdp: 150 },
+    { name: "Intel Core i5-9400/F", tdp: 65 },
+
+    // --- INTEL 8th GEN (Coffee Lake) ---
+    { name: "Intel Core i7-8700K", tdp: 145 },
+    { name: "Intel Core i7-8700", tdp: 120 },
+    { name: "Intel Core i5-8600K", tdp: 130 },
+    { name: "Intel Core i5-8400", tdp: 65 },
+
+    // --- INTEL 7th GEN (Kaby Lake) ---
+    { name: "Intel Core i7-7700K", tdp: 110 },
+    { name: "Intel Core i7-7700", tdp: 80 },
+    { name: "Intel Core i5-7600K", tdp: 100 },
+
+ { name: "Intel Core i7-6700K", tdp: 100 },
+    { name: "Intel Core i7-6700", tdp: 80 },
+    { name: "Intel Core i5-6600K", tdp: 95 },
+
+    // --- INTEL 4th GEN (Haswell) ---
+    { name: "Intel Core i7-4790K", tdp: 120 },
+    { name: "Intel Core i7-4770K", tdp: 110 },
+    { name: "Intel Core i5-4690K", tdp: 100 },
+    { name: "Intel Core i5-4460", tdp: 84 },
+
+    // --- INTEL 3rd GEN (Ivy Bridge) ---
+    { name: "Intel Core i7-3770K", tdp: 95 },
+    { name: "Intel Core i5-3570K", tdp: 95 },
+    { name: "Intel Core i5-3470", tdp: 77 },
+
+    // --- INTEL 2nd GEN (Sandy Bridge) ---
+    { name: "Intel Core i7-2700K", tdp: 115 },
+    { name: "Intel Core i7-2600K", tdp: 115 },
+    { name: "Intel Core i5-2500K", tdp: 115 }
+
+    
+];
+
