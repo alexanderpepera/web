@@ -1,137 +1,101 @@
+/**
+ * PSU REALITY CHECKER // 2026 CORE ENGINE
+ * FULL HARDWARE DATABASE: 2011 - 2026
+ */
+
 const GPUs = [
-    // NVIDIA
-    { name: "NVIDIA RTX 5090", tdp: 575 },
-    { name: "NVIDIA RTX 4090", tdp: 450 },
-    { name: "NVIDIA RTX 5080", tdp: 360 },
-    { name: "NVIDIA RTX 4080 Super", tdp: 320 },
-    { name: "NVIDIA RTX 4080", tdp: 320 },
-    { name: "NVIDIA RTX 5070 Ti", tdp: 300 },
-    { name: "NVIDIA RTX 4070 Ti Super", tdp: 285 },
-    { name: "NVIDIA RTX 3090 Ti", tdp: 450 },
-    { name: "NVIDIA RTX 4070 Ti", tdp: 285 },
-    { name: "NVIDIA RTX 5070", tdp: 250 },
-    { name: "NVIDIA RTX 3090", tdp: 350 },
-    { name: "NVIDIA RTX 4070 Super", tdp: 220 },
-    { name: "NVIDIA RTX 3080 Ti", tdp: 350 },
-    { name: "NVIDIA RTX 4070", tdp: 200 },
-    { name: "NVIDIA RTX 3080", tdp: 320 },
-    { name: "NVIDIA RTX 5060 Ti 16GB", tdp: 175 },
-    { name: "NVIDIA RTX 5060 Ti 8GB", tdp: 175 },
+    // --- NEXT GEN / 2026 FLAGSHIPS ---
+    { name: "NVIDIA GeForce RTX 5090 (Blackwell)", tdp: 575 },
+    { name: "NVIDIA GeForce RTX 5080", tdp: 360 },
+    { name: "NVIDIA GeForce RTX 5070 Ti", tdp: 300 },
+    { name: "NVIDIA GeForce RTX 5070", tdp: 250 },
+    { name: "NVIDIA GeForce RTX 5060 Ti 16GB", tdp: 175 },
+    { name: "NVIDIA GeForce RTX 5060 Ti 8GB", tdp: 175 },
+    { name: "NVIDIA GeForce RTX 5060", tdp: 140 },
+    { name: "NVIDIA GeForce RTX 5050", tdp: 100 },
+
+    // --- NVIDIA 40-SERIES ---
+    { name: "NVIDIA GeForce RTX 4090", tdp: 450 },
+    { name: "NVIDIA GeForce RTX 4080 Super", tdp: 320 },
+    { name: "NVIDIA GeForce RTX 4080", tdp: 320 },
+    { name: "NVIDIA GeForce RTX 4070 Ti Super", tdp: 285 },
+    { name: "NVIDIA GeForce RTX 4070 Ti", tdp: 285 },
+    { name: "NVIDIA GeForce RTX 4070 Super", tdp: 220 },
+    { name: "NVIDIA GeForce RTX 4070", tdp: 200 },
+    { name: "NVIDIA GeForce RTX 4060 Ti", tdp: 160 },
+    { name: "NVIDIA GeForce RTX 4060", tdp: 115 },
+
+    // --- NVIDIA 30-SERIES ---
+    { name: "NVIDIA GeForce RTX 3090 Ti", tdp: 450 },
+    { name: "NVIDIA GeForce RTX 3090", tdp: 350 },
+    { name: "NVIDIA GeForce RTX 3080 Ti", tdp: 350 },
+    { name: "NVIDIA GeForce RTX 3080 12GB", tdp: 350 },
+    { name: "NVIDIA GeForce RTX 3080 10GB", tdp: 320 },
+    { name: "NVIDIA GeForce RTX 3070 Ti", tdp: 290 },
+    { name: "NVIDIA GeForce RTX 3070", tdp: 220 },
+    { name: "NVIDIA GeForce RTX 3060 Ti", tdp: 200 },
+    { name: "NVIDIA GeForce RTX 3060 12GB", tdp: 170 },
+    { name: "NVIDIA GeForce RTX 3060 8GB", tdp: 170 },
+    { name: "NVIDIA GeForce RTX 3050", tdp: 130 },
+
+    // --- NVIDIA 20-SERIES / TITANS ---
     { name: "NVIDIA Titan RTX", tdp: 280 },
-    { name: "NVIDIA RTX 3070 Ti", tdp: 290 },
-    { name: "NVIDIA RTX 3070", tdp: 220 },
-    { name: "NVIDIA RTX 5060", tdp: 140 },
-    { name: "NVIDIA RTX 2080 Ti", tdp: 250 },
-    { name: "NVIDIA RTX 4060 Ti", tdp: 160 },
     { name: "NVIDIA Titan V", tdp: 250 },
-    { name: "NVIDIA RTX 2080 Super", tdp: 250 },
-    { name: "NVIDIA RTX 3060 Ti", tdp: 200 },
-    { name: "NVIDIA RTX 4060", tdp: 115 },
-    { name: "NVIDIA RTX 5050", tdp: 100 },
     { name: "NVIDIA Titan Xp", tdp: 250 },
-    { name: "NVIDIA RTX 2080", tdp: 215 },
-    { name: "NVIDIA Titan X (Pascal)", tdp: 250 },
-    { name: "NVIDIA GTX 1080 Ti", tdp: 250 },
-    { name: "NVIDIA RTX 2070 Super", tdp: 215 },
-    { name: "NVIDIA RTX 2070", tdp: 175 },
-    { name: "NVIDIA RTX 3060 12GB", tdp: 170 },
-    { name: "NVIDIA RTX 2060 Super", tdp: 175 },
-    { name: "NVIDIA GTX 1080", tdp: 180 },
-    { name: "NVIDIA RTX 2060", tdp: 160 },
-    { name: "NVIDIA GTX 1070 Ti", tdp: 180 },
-    { name: "NVIDIA RTX 3060 8GB", tdp: 170 },
-    { name: "NVIDIA GTX 1070", tdp: 150 },
-    { name: "NVIDIA GTX 1660 Ti", tdp: 120 },
-    { name: "NVIDIA RTX 3050", tdp: 130 },
-    { name: "NVIDIA GTX 1660 Super", tdp: 125 },
-    { name: "NVIDIA GTX Titan X (Maxwell)", tdp: 250 },
-    { name: "NVIDIA GTX 980 Ti", tdp: 250 },
-    { name: "NVIDIA GTX 1660", tdp: 120 },
-    { name: "NVIDIA GTX 1650 Super", tdp: 100 },
-    { name: "NVIDIA GTX 980", tdp: 165 },
-    { name: "NVIDIA GTX 1060 6GB", tdp: 120 },
-    { name: "NVIDIA GTX 690", tdp: 300 },
-    { name: "NVIDIA GTX 780 Ti", tdp: 250 },
-    { name: "NVIDIA GTX 1060 3GB", tdp: 120 },
-    { name: "NVIDIA GTX Titan (Kepler)", tdp: 250 },
-    { name: "NVIDIA GTX 1650 (GDDR6)", tdp: 75 },
-    { name: "NVIDIA GTX 970", tdp: 145 },
-    { name: "NVIDIA GTX 1650 (GDDR5)", tdp: 75 },
-    { name: "NVIDIA GTX 780", tdp: 250 },
-    { name: "NVIDIA GTX 590", tdp: 365 },
-    { name: "NVIDIA GTX 770", tdp: 230 },
-    { name: "NVIDIA GTX 1050 Ti", tdp: 75 },
-    { name: "NVIDIA GTX 1630", tdp: 75 },
-    { name: "NVIDIA GTX 680", tdp: 195 },
-    { name: "NVIDIA GTX 960", tdp: 120 },
-    { name: "NVIDIA GTX 670", tdp: 170 },
-    { name: "NVIDIA GTX 760", tdp: 170 },
-    { name: "NVIDIA GTX 1050", tdp: 75 },
-    { name: "NVIDIA GTX 580", tdp: 244 },
-    { name: "NVIDIA GTX 660 Ti", tdp: 150 },
-    { name: "NVIDIA GTX 950", tdp: 90 },
-    { name: "NVIDIA GTX 660", tdp: 140 },
-    { name: "NVIDIA GTX 570", tdp: 219 },
-    { name: "NVIDIA GTX 480", tdp: 250 },
-    { name: "NVIDIA GTX 650 Ti Boost", tdp: 134 },
-    { name: "NVIDIA GTX 295", tdp: 289 },
-    { name: "NVIDIA GTX 750 Ti", tdp: 60 },
-    { name: "NVIDIA GTX 560 Ti", tdp: 170 },
-    { name: "NVIDIA GTX 470", tdp: 215 },
-    { name: "NVIDIA GTX 650 Ti", tdp: 110 },
-    { name: "NVIDIA GT 1030", tdp: 30 },
+    { name: "NVIDIA GeForce RTX 2080 Ti", tdp: 250 },
+    { name: "NVIDIA GeForce RTX 2080 Super", tdp: 250 },
+    { name: "NVIDIA GeForce RTX 2080", tdp: 215 },
+    { name: "NVIDIA GeForce RTX 2070 Super", tdp: 215 },
+    { name: "NVIDIA GeForce RTX 2070", tdp: 175 },
+    { name: "NVIDIA GeForce RTX 2060 Super", tdp: 175 },
+    { name: "NVIDIA GeForce RTX 2060", tdp: 160 },
 
-    // AMD
-    { name: "AMD RX 7900 XTX", tdp: 355 },
-    { name: "AMD RX 9070 XT", tdp: 260 },
-    { name: "AMD RX 9070", tdp: 220 },
-    { name: "AMD RX 7900 XT", tdp: 315 },
-    { name: "AMD RX 6950 XT", tdp: 335 },
-    { name: "AMD RX 7900 GRE", tdp: 260 },
-    { name: "AMD RX 6900 XT", tdp: 300 },
-    { name: "AMD RX 7800 XT", tdp: 263 },
-    { name: "AMD RX 6800 XT", tdp: 300 },
-    { name: "AMD RX 9060 XT 16GB", tdp: 190 },
-    { name: "AMD RX 7700 XT", tdp: 245 },
-    { name: "AMD RX 6800", tdp: 250 },
-    { name: "AMD RX 9060 XT 8GB", tdp: 190 },
-    { name: "AMD RX 6750 XT", tdp: 250 },
-    { name: "AMD RX 6700 XT", tdp: 230 },
-    { name: "AMD RX 7600 XT", tdp: 190 },
-    { name: "AMD RX 7600", tdp: 165 },
-    { name: "AMD RX 6700", tdp: 175 },
+    // --- NVIDIA LEGACY (GTX 10 / 9 / 7 / 6 / 5) ---
+    { name: "NVIDIA GeForce GTX 1080 Ti", tdp: 250 },
+    { name: "NVIDIA GeForce GTX 1080", tdp: 180 },
+    { name: "NVIDIA GeForce GTX 1070 Ti", tdp: 180 },
+    { name: "NVIDIA GeForce GTX 1070", tdp: 150 },
+    { name: "NVIDIA GeForce GTX 1060 6GB", tdp: 120 },
+    { name: "NVIDIA GeForce GTX 1660 Ti", tdp: 120 },
+    { name: "NVIDIA GeForce GTX 1660 Super", tdp: 125 },
+    { name: "NVIDIA GeForce GTX 980 Ti", tdp: 250 },
+    { name: "NVIDIA GeForce GTX 980", tdp: 165 },
+    { name: "NVIDIA GeForce GTX 970", tdp: 145 },
+    { name: "NVIDIA GeForce GTX 780 Ti", tdp: 250 },
+    { name: "NVIDIA GeForce GTX 690 (Dual GPU)", tdp: 300 },
+    { name: "NVIDIA GeForce GTX 590 (Dual GPU)", tdp: 365 },
+    { name: "NVIDIA GeForce GTX 580", tdp: 244 },
+
+    // --- AMD RADEON (MODERN) ---
+    { name: "AMD Radeon RX 7900 XTX", tdp: 355 },
+    { name: "AMD Radeon RX 9070 XT", tdp: 260 },
+    { name: "AMD Radeon RX 9070", tdp: 220 },
+    { name: "AMD Radeon RX 7900 XT", tdp: 315 },
+    { name: "AMD Radeon RX 7900 GRE", tdp: 260 },
+    { name: "AMD Radeon RX 6950 XT", tdp: 335 },
+    { name: "AMD Radeon RX 6900 XT", tdp: 300 },
+    { name: "AMD Radeon RX 6800 XT", tdp: 300 },
+    { name: "AMD Radeon RX 7800 XT", tdp: 263 },
+    { name: "AMD Radeon RX 7700 XT", tdp: 245 },
+    { name: "AMD Radeon RX 6800", tdp: 250 },
+    { name: "AMD Radeon RX 7600 XT", tdp: 190 },
+    { name: "AMD Radeon RX 7600", tdp: 165 },
+
+    // --- AMD RADEON LEGACY ---
     { name: "AMD Radeon VII", tdp: 300 },
-    { name: "AMD RX 6650 XT", tdp: 180 },
-    { name: "AMD RX 5700 XT", tdp: 225 },
-    { name: "AMD RX 6600 XT", tdp: 160 },
-    { name: "AMD RX 6600", tdp: 132 },
-    { name: "AMD RX 5700", tdp: 180 },
-    { name: "AMD RX Vega 64", tdp: 295 },
-    { name: "AMD RX 5600 XT", tdp: 150 },
-    { name: "AMD RX Vega 56", tdp: 210 },
-    { name: "AMD R9 Fury X", tdp: 275 },
-    { name: "AMD R9 295X2", tdp: 500 },
-    { name: "AMD RX 590", tdp: 175 },
-    { name: "AMD R9 Fury", tdp: 275 },
-    { name: "AMD RX 5500 XT", tdp: 130 },
-    { name: "AMD RX 6500 XT", tdp: 107 },
-    { name: "AMD RX 580", tdp: 185 },
-    { name: "AMD RX 480", tdp: 150 },
-    { name: "AMD R9 390X", tdp: 275 },
-    { name: "AMD R9 390", tdp: 275 },
-    { name: "AMD R9 290X", tdp: 290 },
-    { name: "AMD RX 570", tdp: 150 },
-    { name: "AMD RX 6400", tdp: 53 },
-    { name: "AMD R9 290", tdp: 275 },
-    { name: "AMD RX 470", tdp: 120 },
-    { name: "AMD HD 7990", tdp: 375 },
-    { name: "AMD R9 380X", tdp: 190 },
-    { name: "AMD R9 280X", tdp: 250 },
-    { name: "AMD HD 7970", tdp: 250 },
-    { name: "AMD R9 380", tdp: 190 },
+    { name: "AMD Radeon RX Vega 64", tdp: 295 },
+    { name: "AMD Radeon RX Vega 56", tdp: 210 },
+    { name: "AMD Radeon RX 5700 XT", tdp: 225 },
+    { name: "AMD Radeon R9 295X2", tdp: 500 },
+    { name: "AMD Radeon R9 Fury X", tdp: 275 },
+    { name: "AMD Radeon RX 590", tdp: 175 },
+    { name: "AMD Radeon RX 580", tdp: 185 },
+    { name: "AMD Radeon RX 480", tdp: 150 },
+    { name: "AMD Radeon HD 7990", tdp: 375 },
+    { name: "AMD Radeon HD 7970", tdp: 250 },
 
-    // Intel
-    { name: "Intel Arc B580", tdp: 190 },
+    // --- INTEL ARC ---
+    { name: "Intel Arc B580 (Battlemage)", tdp: 190 },
     { name: "Intel Arc B570", tdp: 150 },
     { name: "Intel Arc A770", tdp: 225 },
     { name: "Intel Arc A750", tdp: 225 },
@@ -140,133 +104,183 @@ const GPUs = [
 ];
 
 const CPUs = [
-    { name: "Intel Core Ultra 9 285K", tdp: 250 },
+    // --- AMD RYZEN 9000 SERIES (ZEN 5) ---
+    { name: "AMD Ryzen 9 9950X3D", tdp: 230 },
+    { name: "AMD Ryzen 9 9950X", tdp: 230 },
+    { name: "AMD Ryzen 9 9900X3D", tdp: 162 },
+    { name: "AMD Ryzen 9 9900X", tdp: 162 },
+    { name: "AMD Ryzen 7 9800X3D", tdp: 162 },
+    { name: "AMD Ryzen 7 9700X", tdp: 88 },
+    { name: "AMD Ryzen 5 9600X", tdp: 88 },
+
+    // --- AMD RYZEN 7000 / 8000 SERIES ---
+    { name: "AMD Ryzen 9 7950X3D", tdp: 162 },
+    { name: "AMD Ryzen 9 7950X", tdp: 230 },
+    { name: "AMD Ryzen 7 7800X3D", tdp: 162 },
+    { name: "AMD Ryzen 7 7700X", tdp: 142 },
+    { name: "AMD Ryzen 7 8700G", tdp: 88 },
+    { name: "AMD Ryzen 5 7600X", tdp: 142 },
+    { name: "AMD Ryzen 5 7500F", tdp: 88 },
+
+    // --- AMD RYZEN 5000 SERIES (ZEN 3) ---
+    { name: "AMD Ryzen 9 5950X", tdp: 142 },
+    { name: "AMD Ryzen 9 5900X", tdp: 142 },
+    { name: "AMD Ryzen 7 5800X3D", tdp: 142 },
+    { name: "AMD Ryzen 7 5800X", tdp: 142 },
+    { name: "AMD Ryzen 7 5700X", tdp: 88 },
+    { name: "AMD Ryzen 5 5600X", tdp: 88 },
+    { name: "AMD Ryzen 5 5600G", tdp: 88 },
+    { name: "AMD Ryzen 5 5500", tdp: 88 },
+
+    // --- AMD RYZEN 1000 / 2000 / 3000 ---
+    { name: "AMD Ryzen 9 3950X", tdp: 142 },
+    { name: "AMD Ryzen 9 3900X", tdp: 142 },
+    { name: "AMD Ryzen 7 3700X", tdp: 88 },
+    { name: "AMD Ryzen 5 3600", tdp: 65 },
+    { name: "AMD Ryzen 7 2700X", tdp: 142 },
+    { name: "AMD Ryzen 5 2600X", tdp: 95 },
+    { name: "AMD Ryzen 7 1800X", tdp: 95 },
+
+    // --- INTEL 14th GEN (RAPTOR LAKE REFRESH) ---
+    { name: "Intel Core i9-14900KS", tdp: 253 },
     { name: "Intel Core i9-14900K", tdp: 253 },
-    { name: "AMD Ryzen 9 9950X3D", tdp: 170 },
-    { name: "AMD Ryzen 9 9950X", tdp: 170 },
-    { name: "AMD Ryzen 7 9850X3D", tdp: 120 },
-    { name: "AMD Ryzen 7 9800X3D", tdp: 120 },
-    { name: "AMD Ryzen 5 9600X", tdp: 65 }
+    { name: "Intel Core i9-14900KF", tdp: 253 },
+    { name: "Intel Core i9-14900", tdp: 219 },
+    { name: "Intel Core i7-14700K", tdp: 253 },
+    { name: "Intel Core i7-14700KF", tdp: 253 },
+    { name: "Intel Core i7-14700", tdp: 219 },
+    { name: "Intel Core i5-14600K", tdp: 181 },
+    { name: "Intel Core i5-14600KF", tdp: 181 },
+    { name: "Intel Core i5-14400F", tdp: 148 },
+
+    // --- INTEL 13th GEN (RAPTOR LAKE) ---
+    { name: "Intel Core i9-13900KS", tdp: 253 },
+    { name: "Intel Core i9-13900K", tdp: 253 },
+    { name: "Intel Core i9-13900KF", tdp: 253 },
+    { name: "Intel Core i7-13700K", tdp: 253 },
+    { name: "Intel Core i7-13700KF", tdp: 253 },
+    { name: "Intel Core i5-13600K", tdp: 181 },
+    { name: "Intel Core i5-13600KF", tdp: 181 },
+    { name: "Intel Core i5-13400F", tdp: 148 },
+
+    // --- INTEL 12th GEN (ALDER LAKE) ---
+    { name: "Intel Core i9-12900KS", tdp: 241 },
+    { name: "Intel Core i9-12900K", tdp: 241 },
+    { name: "Intel Core i9-12900KF", tdp: 241 },
+    { name: "Intel Core i7-12700K", tdp: 190 },
+    { name: "Intel Core i7-12700KF", tdp: 190 },
+    { name: "Intel Core i5-12600K", tdp: 150 },
+    { name: "Intel Core i5-12400F", tdp: 117 },
+
+    // --- INTEL 10th & 11th GEN (COMET/ROCKET LAKE) ---
+    { name: "Intel Core i9-11900K", tdp: 251 },
+    { name: "Intel Core i9-11900KF", tdp: 251 },
+    { name: "Intel Core i7-11700K", tdp: 251 },
+    { name: "Intel Core i5-11600K", tdp: 190 },
+    { name: "Intel Core i5-11400F", tdp: 154 },
+    { name: "Intel Core i9-10900K", tdp: 250 },
+    { name: "Intel Core i9-10850K", tdp: 250 },
+    { name: "Intel Core i7-10700K", tdp: 229 },
+    { name: "Intel Core i5-10600K", tdp: 182 },
+    { name: "Intel Core i5-10400F", tdp: 134 },
+
+    // --- INTEL 8th & 9th GEN (COFFEE LAKE) ---
+    { name: "Intel Core i9-9900KS", tdp: 250 },
+    { name: "Intel Core i9-9900K", tdp: 210 },
+    { name: "Intel Core i7-9700K", tdp: 190 },
+    { name: "Intel Core i5-9600K", tdp: 150 },
+    { name: "Intel Core i7-8700K", tdp: 145 },
+    { name: "Intel Core i7-8700", tdp: 120 },
+    { name: "Intel Core i5-8600K", tdp: 130 },
+    { name: "Intel Core i5-8400", tdp: 65 },
+
+    // --- INTEL 6th & 7th GEN (SKYLAKE/KABY LAKE) ---
+    { name: "Intel Core i7-7700K", tdp: 110 },
+    { name: "Intel Core i7-7700", tdp: 80 },
+    { name: "Intel Core i5-7600K", tdp: 100 },
+    { name: "Intel Core i7-6700K", tdp: 100 },
+    { name: "Intel Core i7-6700", tdp: 80 },
+    { name: "Intel Core i5-6600K", tdp: 95 },
+
+    // --- INTEL 4th GEN (HASWELL) ---
+    { name: "Intel Core i7-4790K (Devil's Canyon)", tdp: 120 },
+    { name: "Intel Core i7-4770K", tdp: 110 },
+    { name: "Intel Core i5-4690K", tdp: 100 },
+    { name: "Intel Core i5-4460", tdp: 84 },
+
+    // --- INTEL 2nd & 3rd GEN (SANDY/IVY BRIDGE) ---
+    { name: "Intel Core i7-3770K", tdp: 95 },
+    { name: "Intel Core i5-3570K", tdp: 95 },
+    { name: "Intel Core i7-2700K", tdp: 115 },
+    { name: "Intel Core i7-2600K", tdp: 115 },
+    { name: "Intel Core i5-2500K", tdp: 115 }
 ];
 
+// UI ELEMENTS
 const gpuSelect = document.getElementById('gpuSelect');
 const cpuSelect = document.getElementById('cpuSelect');
 const actualWatts = document.getElementById('actualWatts');
 const recWatts = document.getElementById('recWatts');
 const amazonBtn = document.getElementById('amazonBtn');
 
-// Populate dropdowns
-GPUs.forEach(g => gpuSelect.add(new Option(g.name, g.tdp)));
-CPUs.forEach(c => cpuSelect.add(new Option(c.name, c.tdp)));
+/**
+ * INITIALIZATION:
+ * Populate the GPU and CPU dropdown menus from the database.
+ */
+function init() {
+    // Fill GPU Dropdown
+    GPUs.forEach(item => {
+        let opt = document.createElement('option');
+        opt.value = item.tdp;
+        opt.innerHTML = item.name;
+        gpuSelect.appendChild(opt);
+    });
 
-function calculate() {
-    const gTdp = parseInt(gpuSelect.value);
-    const cTdp = parseInt(cpuSelect.value);
-    const systemOverhead = 100; // Fans, Mobo, RGB
+    // Fill CPU Dropdown
+    CPUs.forEach(item => {
+        let opt = document.createElement('option');
+        opt.value = item.tdp;
+        opt.innerHTML = item.name;
+        cpuSelect.appendChild(opt);
+    });
     
-    const total = gTdp + cTdp + systemOverhead;
-    const recommended = Math.ceil((total * 1.5) / 50) * 50; 
-
-    actualWatts.innerText = `${total}W`;
-    recWatts.innerText = `${recommended}W`;
-    
-    amazonBtn.innerText = `Deploy ${recommended}W Unit →`;
-    amazonBtn.href = `https://amazon.com{recommended}+watt+power+supply+80+plus+gold&tag=YOURTAG-20`;
+    calculate();
 }
 
+/**
+ * CORE LOGIC:
+ * Calculates real-world draw and adds a 50% safety buffer.
+ */
+function calculate() {
+    const gpuPower = parseInt(gpuSelect.value);
+    const cpuPower = parseInt(cpuSelect.value);
+    
+    // System Overhead includes:
+    // Motherboard (~50W-80W)
+    // RAM (5W per stick)
+    // Fans/AIO/RGB (20W-40W)
+    const fixedOverhead = 100; 
+
+    // Peak Load Calculation
+    const totalDraw = gpuPower + cpuPower + fixedOverhead;
+    
+    // Reality Checker Recommended PSU:
+    // We multiply by 1.5 because modern PSUs hit max efficiency at 50% load.
+    // This also prevents "transient spikes" from crashing the PC.
+    let recommendedTotal = Math.ceil((totalDraw * 1.5) / 50) * 50;
+
+    // Update UI numbers
+    actualWatts.innerText = `${totalDraw}W`;
+    recWatts.innerText = `${recommendedTotal}W`;
+
+    // Update Amazon CTA
+    amazonBtn.innerText = `Deploy ${recommendedTotal}W Unit →`;
+    amazonBtn.href = `https://amazon.com{recommendedTotal}+watt+power+supply+80+plus+gold&tag=YOURTAG-20`;
+}
+
+// ATTACH EVENT LISTENERS
 gpuSelect.addEventListener('change', calculate);
 cpuSelect.addEventListener('change', calculate);
 
-// Run on load
-calculate();
-
-const CPUs = [
-    // --- AMD RYZEN 9000 SERIES (Zen 5) ---
-    { name: "AMD Ryzen 9 9950X/3D", tdp: 230 },
-    { name: "AMD Ryzen 9 9900X/3D", tdp: 162 },
-    { name: "AMD Ryzen 7 9800X3D", tdp: 162 },
-    { name: "AMD Ryzen 7 9700X", tdp: 88 },
-    { name: "AMD Ryzen 5 9600X/9600", tdp: 88 },
-
-    // --- AMD RYZEN 8000 SERIES (APU) ---
-    { name: "AMD Ryzen 7 8700G/8700F", tdp: 88 },
-    { name: "AMD Ryzen 5 8600G/8500G/8400F", tdp: 88 },
-    { name: "AMD Ryzen 3 8300G", tdp: 65 },
-
-    // --- AMD RYZEN 7000 SERIES (Zen 4) ---
-    { name: "AMD Ryzen 9 7950X3D/7950X", tdp: 230 },
-    { name: "AMD Ryzen 9 7900X3D/7900X", tdp: 230 },
-    { name: "AMD Ryzen 9 7900", tdp: 88 },
-    { name: "AMD Ryzen 7 7800X3D", tdp: 162 },
-    { name: "AMD Ryzen 7 7700X", tdp: 142 },
-    { name: "AMD Ryzen 7 7700", tdp: 88 },
-    { name: "AMD Ryzen 5 7600X", tdp: 142 },
-    { name: "AMD Ryzen 5 7600/7500F", tdp: 88 },
-
-    // --- AMD RYZEN 5000 SERIES (Zen 3) ---
-    { name: "AMD Ryzen 9 5950X/5900XT/5900X", tdp: 142 },
-    { name: "AMD Ryzen 9 5900", tdp: 88 },
-    { name: "AMD Ryzen 7 5800X3D/5800XT/5800X", tdp: 142 },
-    { name: "AMD Ryzen 7 5700X3D/5700X/5700", tdp: 88 },
-    { name: "AMD Ryzen 7 5700G", tdp: 88 },
-    { name: "AMD Ryzen 5 5600X3D/5600X", tdp: 88 },
-    { name: "AMD Ryzen 5 5600/T/GT/G", tdp: 88 },
-    { name: "AMD Ryzen 5 5500X3D/5500GT/5500", tdp: 88 },
-    { name: "AMD Ryzen 3 5300G/5100", tdp: 65 },
-
-    // --- AMD RYZEN 1000/2000/3000 ---
-    { name: "AMD Ryzen 9 3950X/3900XT/3900X", tdp: 142 },
-    { name: "AMD Ryzen 7 3800XT/3800X", tdp: 142 },
-    { name: "AMD Ryzen 7 3700X", tdp: 88 },
-    { name: "AMD Ryzen 7 2700X", tdp: 142 },
-    { name: "AMD Ryzen 5 3600XT/3600X/3600", tdp: 95 },
-    { name: "AMD Ryzen 5 2600X", tdp: 95 },
-    { name: "AMD Ryzen 7 1800X/1700X", tdp: 95 },
-    { name: "AMD Ryzen 3 3300X/3100/3200G", tdp: 65 },
-
-    // --- INTEL 14th GEN (Raptor Lake Refresh) ---
-    { name: "Intel Core i9-14900K/KF", tdp: 253 },
-    { name: "Intel Core i9-14900T", tdp: 106 },
-    { name: "Intel Core i7-14700K/KF", tdp: 253 },
-    { name: "Intel Core i7-14700/F", tdp: 219 },
-    { name: "Intel Core i7-14700T", tdp: 106 },
-    { name: "Intel Core i5-14600K/KF", tdp: 181 },
-    { name: "Intel Core i5-14500/14400/F", tdp: 154 },
-    { name: "Intel Core i3-14100/F", tdp: 110 },
-
-    // --- INTEL 13th GEN (Raptor Lake) ---
-    { name: "Intel Core i9-13900KS/K/KF", tdp: 253 },
-    { name: "Intel Core i9-13900/F", tdp: 219 },
-    { name: "Intel Core i9-13900T", tdp: 106 },
-    { name: "Intel Core i7-13700K/KF", tdp: 253 },
-    { name: "Intel Core i7-13700/F", tdp: 219 },
-    { name: "Intel Core i5-13600K/KF", tdp: 181 },
-    { name: "Intel Core i5-13500/13400/F", tdp: 154 },
-    { name: "Intel Core i3-13100/F", tdp: 89 },
-
-    // --- INTEL 12th GEN (Alder Lake) ---
-    { name: "Intel Core i9-12900KS/K/KF", tdp: 241 },
-    { name: "Intel Core i9-12900/F", tdp: 202 },
-    { name: "Intel Core i7-12700K/KF", tdp: 190 },
-    { name: "Intel Core i7-12700/F", tdp: 180 },
-    { name: "Intel Core i5-12600K/KF", tdp: 150 },
-    { name: "Intel Core i5-12500/12400/F", tdp: 117 },
-    { name: "Intel Core i3-12300/12100/F", tdp: 89 },
-
-    // --- INTEL 10th & 11th GEN ---
-    { name: "Intel Core i9-11900K/KF", tdp: 251 },
-    { name: "Intel Core i9-11900/F", tdp: 224 },
-    { name: "Intel Core i7-11700K/KF", tdp: 251 },
-    { name: "Intel Core i5-11600K/KF", tdp: 190 },
-    { name: "Intel Core i5-11400/F", tdp: 154 },
-    { name: "Intel Core i9-10900K/KF", tdp: 250 },
-    { name: "Intel Core i7-10700K/KF", tdp: 229 },
-    { name: "Intel Core i5-10600K/KF", tdp: 182 },
-    { name: "Intel Core i5-10400/F", tdp: 134 },
-    { name: "Intel Core i3-10100/F", tdp: 90 }
-
-
-
-    
-];
-
+// START ENGINE
+init();
