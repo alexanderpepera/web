@@ -291,24 +291,34 @@ document.addEventListener("DOMContentLoaded", function() {
     init();
 });
 
-
-// INDEPENDENT SEARCH LOGIC
-function enableSearch(inputId, selectId) {
+// 1. REBUILD FILTER (Bulletproof for PC & Mobile)
+function setupFilter(inputId, selectId, hardwareData) {
     const input = document.getElementById(inputId);
     const select = document.getElementById(selectId);
 
-    input.addEventListener('input', () => {
-        const filter = input.value.toLowerCase();
-        const options = select.options;
+    if (!input || !select) return;
 
-        for (let i = 0; i < options.length; i++) {
-            const text = options[i].text.toLowerCase();
-            // This hides/shows the actual option lines
-            options[i].style.display = text.includes(filter) ? "" : "none";
-        }
+    input.addEventListener('input', () => {
+        const term = input.value.toLowerCase();
+        
+        // Physically clear the dropdown
+        select.innerHTML = "";
+
+        // Re-add matching items directly from your GPUs/CPUs data lists
+        hardwareData.forEach(item => {
+            if (item.name.toLowerCase().includes(term)) {
+                let opt = document.createElement('option');
+                opt.value = item.tdp;
+                opt.textContent = item.name;
+                select.appendChild(opt);
+            }
+        });
+
+        // If something matches, update the math
+        calculate();
     });
 }
 
-// RUN FOR BOTH
-enableSearch('gpuSearch', 'gpuSelect');
-enableSearch('cpuSearch', 'cpuSelect');
+// 2. ACTIVATE (Call these at the VERY END of your script)
+setupFilter('gpuSearch', 'gpuSelect', GPUs);
+setupFilter('cpuSearch', 'cpuSelect', CPUs);
