@@ -265,42 +265,7 @@ const CPUs = [
     { name: "Intel Core i5-10400/F", tdp: 134 },
     { name: "Intel Core i3-10100/F", tdp: 90 }
 
-        // --- INTEL 9th GEN (Coffee Lake Refresh) ---
-    { name: "Intel Core i9-9900K/KF", tdp: 210 },
-    { name: "Intel Core i7-9700K/KF", tdp: 190 },
-    { name: "Intel Core i5-9600K/KF", tdp: 150 },
-    { name: "Intel Core i5-9400/F", tdp: 65 },
 
-    // --- INTEL 8th GEN (Coffee Lake) ---
-    { name: "Intel Core i7-8700K", tdp: 145 },
-    { name: "Intel Core i7-8700", tdp: 120 },
-    { name: "Intel Core i5-8600K", tdp: 130 },
-    { name: "Intel Core i5-8400", tdp: 65 },
-
-    // --- INTEL 7th GEN (Kaby Lake) ---
-    { name: "Intel Core i7-7700K", tdp: 110 },
-    { name: "Intel Core i7-7700", tdp: 80 },
-    { name: "Intel Core i5-7600K", tdp: 100 },
-
- { name: "Intel Core i7-6700K", tdp: 100 },
-    { name: "Intel Core i7-6700", tdp: 80 },
-    { name: "Intel Core i5-6600K", tdp: 95 },
-
-    // --- INTEL 4th GEN (Haswell) ---
-    { name: "Intel Core i7-4790K", tdp: 120 },
-    { name: "Intel Core i7-4770K", tdp: 110 },
-    { name: "Intel Core i5-4690K", tdp: 100 },
-    { name: "Intel Core i5-4460", tdp: 84 },
-
-    // --- INTEL 3rd GEN (Ivy Bridge) ---
-    { name: "Intel Core i7-3770K", tdp: 95 },
-    { name: "Intel Core i5-3570K", tdp: 95 },
-    { name: "Intel Core i5-3470", tdp: 77 },
-
-    // --- INTEL 2nd GEN (Sandy Bridge) ---
-    { name: "Intel Core i7-2700K", tdp: 115 },
-    { name: "Intel Core i7-2600K", tdp: 115 },
-    { name: "Intel Core i5-2500K", tdp: 115 }
 
     
 ];
