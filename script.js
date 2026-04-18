@@ -184,6 +184,8 @@ const CPUs = [
 { name: "Intel Core i7-12700KF", tdp: 190 },
 { name: "Intel Core i5-12600K", tdp: 150 },
 { name: "Intel Core i5-12400F", tdp: 117 },
+ { name: "Intel Core i3-12100", tdp: 89 },
+ { name: "Intel Core i3-12100F", tdp: 89 },
 
 // --- INTEL 10th & 11th GEN (COMET/ROCKET LAKE) ---
 { name: "Intel Core i9-11900K", tdp: 251 },
