@@ -312,4 +312,3 @@ function enableSearch(inputId, selectId) {
 // RUN FOR BOTH
 enableSearch('gpuSearch', 'gpuSelect');
 enableSearch('cpuSearch', 'cpuSelect');
-    calculate();
